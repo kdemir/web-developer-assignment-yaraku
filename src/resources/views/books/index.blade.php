@@ -45,14 +45,13 @@
                 <button type="submit" class="btn btn-primary">Add</button>
         </div>
     </div>
-
 </form>
 
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Title</th>
-            <th>Author</th>
+            <th>@sortablelink('title', 'Title')</th>
+            <th>@sortablelink('author', 'Author')</th>
             <th>Action</th>
         </tr>
     </thead>

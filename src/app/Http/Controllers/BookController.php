@@ -10,10 +10,8 @@ class BookController extends Controller
     
     public function index()
     {
-        //show all the books from database
-        $books = Book::latest()->paginate(10);
+        $books = Book::sortable()->paginate(10);
         return view('books.index', compact('books'))->with(request()->input('page'));
-        
     }
 
 
