@@ -63,6 +63,7 @@
             <td>{{ $book->author }}</td>
             <td>
                 <form action="{{ route('books.destroy',$book->id) }}" method="POST">
+                <a class="btn btn-primary" href="{{ route('books.edit',$book->id) }}">Edit Author</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>

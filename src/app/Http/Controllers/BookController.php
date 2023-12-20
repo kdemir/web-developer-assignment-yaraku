@@ -40,20 +40,25 @@ class BookController extends Controller
  
     public function show(Book $book)
     {
-        //
-       
+        
     }
 
   
     public function edit(Book $book)
     {
-        
+        return view('books.edit', compact('book'));
     }
 
     
     public function update(Request $request, Book $book)
     {
-        
+        $request->validate([
+            'author' => 'required',
+        ]);
+
+        $book->update($request->all());
+
+        return redirect()->route('books.index')->with('success','Author updated successfully');
     }
     
 
