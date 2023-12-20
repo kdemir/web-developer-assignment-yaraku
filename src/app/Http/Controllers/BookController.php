@@ -31,10 +31,10 @@ class BookController extends Controller
         'author' => 'required'
     ]);
 
-    //creates a new book in the database
-    Book::create($request->all());
-    return redirect()->route('books.index')->with('success', 'New Book has been added');
-    
+        //creates a new book in the database
+        Book::create($request->all());
+        return redirect()->route('books.index')->with('success', 'New Book has been added');
+
     }
 
  
@@ -58,8 +58,12 @@ class BookController extends Controller
     
 
 
-    public function destroy(Book $book)
+    public function destroy($id)
     {
+      //delete existing book
+      $book = Book::findOrFail($id);
+      $book->delete();
+      return redirect()->route('books.index')->with('success','Book deleted successfully');
    
     }
 

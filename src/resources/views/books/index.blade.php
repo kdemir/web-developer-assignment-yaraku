@@ -53,6 +53,7 @@
         <tr>
             <th>Title</th>
             <th>Author</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -60,6 +61,13 @@
         <tr>
             <td>{{ $book->title }}</td>
             <td>{{ $book->author }}</td>
+            <td>
+                <form action="{{ route('books.destroy',$book->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
