@@ -14,6 +14,7 @@
 // use App\Http\Controllers\BookController;
 
 Route::resource('books', BookController::class);
+Route::get('search','BookController@search')->name('books.search');
 // Route::get('books', [BookController::class, 'index'])->name('books.index');
 // Route::post('books', [BookController::class, 'store'])->name('books.store');
 // Route::delete('books/{id}', [BookController::class, 'destroy'])->name('books.destroy');

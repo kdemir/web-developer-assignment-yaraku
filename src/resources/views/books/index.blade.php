@@ -47,6 +47,12 @@
     </div>
 </form>
 
+<form action="{{ route('books.search') }}" method="GET">
+    <strong>Search by Title or Author:</strong>
+    <input type="search" name="search_book" class="form-control" >
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
     <table class="table table-bordered">
         <thead>
         <tr>
