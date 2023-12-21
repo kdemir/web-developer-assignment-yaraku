@@ -9,6 +9,7 @@ use App\Book;
 class BookController extends Controller
 {
     
+    //show all existing books from the database
     public function index()
     {
         $books = Book::sortable()->paginate(10);
@@ -16,12 +17,7 @@ class BookController extends Controller
     }
 
 
-    public function create()
-    {
-    
-    }
-
-
+    //add new book to the database
     public function store(Request $request)
     {
       //validate the user input
@@ -30,25 +26,20 @@ class BookController extends Controller
         'author' => 'required'
     ]);
 
-        //creates a new book in the database
         Book::create($request->all());
         return redirect()->route('books.index')->with('success', 'New Book has been added');
 
     }
-
- 
-    public function show(Book $book)
-    {
-        
-    }
-
   
+
+    //open view for editing Author
     public function edit(Book $book)
     {
         return view('books.edit', compact('book'));
     }
 
     
+    //edit Authors name
     public function update(Request $request, Book $book)
     {
         $request->validate([
@@ -61,10 +52,9 @@ class BookController extends Controller
     }
     
 
-
+    //delete existing book
     public function destroy($id)
     {
-      //delete existing book
       $book = Book::findOrFail($id);
       $book->delete();
       return redirect()->route('books.index')->with('success','Book deleted successfully');
@@ -72,6 +62,8 @@ class BookController extends Controller
     }
 
 
+    //search function: input string searches in Title and Author
+    //redirecting to a new view with search results
     public function search()
     {
         $search_text = $_GET['search_book'];
@@ -80,6 +72,8 @@ class BookController extends Controller
         return view('books.search', compact('books'));
     }
 
+
+    //generates csv content for csv export
     private function generateCsvContent($data)
     {
         $file = fopen('php://temp', 'w');
@@ -93,6 +87,8 @@ class BookController extends Controller
     }
 
 
+    //method for exporting csv 
+    //user can choose betweend books, titles and authors
     public function exportToCsv(Request $request)
     {
         $books = Book::all();
@@ -135,8 +131,9 @@ class BookController extends Controller
 
     }
 
-    
 
+    //method for exporting XML 
+    //user can choose betweend books, titles and authors
     public function exportToXml(Request $request)
     {
         $exportOption = $request->input('export-option-xml');
