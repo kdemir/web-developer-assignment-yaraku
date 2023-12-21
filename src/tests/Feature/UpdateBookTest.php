@@ -8,9 +8,7 @@ use App\Book;
 
 class UpdateBookTest extends TestCase
 {
-   
     use RefreshDatabase;
-
     public function testUpdateBook()
     {
         $data = [

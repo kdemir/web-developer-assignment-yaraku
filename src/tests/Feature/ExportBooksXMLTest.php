@@ -2,14 +2,14 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Book;
 
 class ExportBooksXMLTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
     protected function createBooks()
     {
         $book1 = Book::create(['title' => 'Test Book 1', 'author' => 'Test Author 1']);

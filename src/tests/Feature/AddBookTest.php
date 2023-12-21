@@ -3,13 +3,12 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Book;
 
 class AddBookTest extends TestCase
 {
-   
-    use RefreshDatabase;
+    use DatabaseMigrations;
     public function testAddBook()
     {
         $this->withoutMiddleware();
