@@ -27,7 +27,6 @@
 
 <form action="{{ route('books.store') }}" method="POST">
     @csrf
-
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -48,11 +47,21 @@
 </form>
 
 <form action="{{ route('books.search') }}" method="GET">
-    <strong>Search by Title or Author:</strong>
-    <input type="search" name="search_book" class="form-control" >
-    <button type="submit" class="btn btn-primary">Search</button>
+    @csrf
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Search by Title or Author:</strong>
+                <input type="search" name="search_book" class="form-control" >
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
 </form>
-
+<br>
+<br>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -80,5 +89,37 @@
 
     </table>
     {{ $books->links() }}
+
+
+   
+    <h2>Export table to CSV or XML</h2>
+    <div id="export-container">
+        <form action="{{ route('books.exportCSV') }}" method="POST">
+            @csrf
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <strong for="export-option-csv">CSV:</strong>
+                <select name="export-option-csv" id="export-option-csv">
+                    <option value="books-csv">Books.csv</option>
+                    <option value="titles-csv">Titles.csv</option>
+                    <option value="authors-csv">Authors.csv</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Download</button>
+            </div>
+        </form>
+        <br>
+        <br>
+        <form action="{{ route('books.exportXML') }}" method="POST">
+            @csrf
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <strong for="export-option-xml">XML:</strong>
+                <select name="export-option-xml" id="export-option-xml">
+                    <option value="books-xml">Books.xml</option>
+                    <option value="titles-xml">Titles.xml</option>
+                    <option value="authors-xml">Authors.xml</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Download</button>
+            </div>
+        </form>
+    </div>
 
 @endsection
