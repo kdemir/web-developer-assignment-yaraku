@@ -1,3 +1,21 @@
+This is a simple web application to add, edit, delete and update Books. Some extra features include: searching for books by Author or Title, Sort by Author or Title and CSV and XML Export.
+
+How to run this project:
+- Start the containers by running 'docker-compose up -d' in the project root
+- Install the composer packages by running 'docker-compose exec laravel composer install'
+- ensure that the containers and mysql database are running with docker ps -a
+- access the Books view with http://localhost/books
+  
+Tests
+- to run the unittests use the command vendor/bin/phpunit
+- the Test environment uses a memory database. Therefore the data from the local database won't be deleted.
+  
+Database
+- if the Laravel User gets the 'SQLSTATE[HY000][2054] The server requested authentication method unknown to the client' Exception, please run this script in your database:
+  ALTER USER 'laravel'@"%" IDENTIFIED WITH mysql_native_password BY 'secret';
+  GRANT ALL PRIVILEGES ON *.* TO 'laravel'@"%" WITH GRANT OPTION;
+
+
 ## Requirements
 - [Docker](https://docs.docker.com/install)
 - [Docker Compose](https://docs.docker.com/compose/install)
