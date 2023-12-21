@@ -14,13 +14,13 @@ class AddBookTest extends TestCase
     {
         $this->withoutMiddleware();
         $initialBookCount = Book::count();
-        $data = [
+        $book = [
             'title' => 'Test Title',
             'author' => 'Test Author',
         ];
 
-        $response = $this->post(route('books.store'), $data);
-        $this->assertDatabaseHas('books', $data);
+        $response = $this->post(route('books.store'), $book);
+        $this->assertDatabaseHas('books', $book);
         $this->assertEquals($initialBookCount + 1, Book::count());
         $response->assertRedirect(route('books.index'));
     }
